@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <title>Document</title>
+    <style>
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+    }
+    
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+        /*overflow: hidden;*/
+    }
+    </style>
+    <link rel="stylesheet" href="css/dialog.min.css">
+    <script src="../src/dialog.min.js"></script>
+    <script>
+    window.addEventListener('DOMContentLoaded', function() {
+        // Dialog.isModal = true;
+        var inp = document.querySelector('#inp');
+        document.querySelector('#btn').addEventListener('click', function() {
+            if (inp.value.trim() === '') {
+
+                Dialog.alert({
+                    c: '输入一些信息吧',
+                    b: {
+                        '我知道了': function() {
+                            inp.focus();
+                        }
+                    }
+                });
+                return;
+            }
+            Dialog.alert({
+                c: inp.value,
+                b: {
+                    '确定': function() {
+                        Dialog.alert('1你点击了确定！');
+                        Dialog.alert('2你点击了确定！');
+                        Dialog.alert('3你点击了确定！');
+                        Dialog.alert('4点击了确定！');
+                        Dialog.alert('5你点击了确定！');
+                        Dialog.alert('6你点击了确定！');
+                        Dialog.alert('7你点击了确定！');
+                    }
+                }
+            });
+        }, false);
+        document.querySelector('#btn2').addEventListener('click', function() {
+            Dialog.alert({
+                t: '警告',
+                c: '你妈炸了！',
+                m: true,
+                b: {
+                    '怎么可能': function() {
+                        Dialog.alert('我骗你做什么！');
+                    },
+                    '是吗我问问': function() {
+                        Dialog.alert('呵呵哒！');
+                    }
+                }
+            });
+        }, false);
+    }, false);
+    </script>
+</head>
+
+<body>
+    <input type="text" id="inp">
+    <button id="btn">提示</button>
+    <button id="btn2">体会</button>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+</body>
+
+</html>

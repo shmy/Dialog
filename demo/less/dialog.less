@@ -1,0 +1,125 @@
+@import "base.less";
+// 遮罩
+.dialog-mask {
+    margin: 0;
+    padding: 0;
+    .thc();
+    .tc();
+    .us();
+    font-family: 'Microsoft Yahei';
+    -webkit-tap-highlight-color: rgba(255, 0, 0, 0);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(136, 136, 136, 0.7);
+    .df();
+    .jc();
+    .ai();
+    .tr(translate3d(0, -100%, 0));
+    opacity: 0;
+    // 容器
+    .dialog-wrap {
+        height: 50%;
+        width: 80%;
+        background-color: #fff;
+        border-radius: 5px;
+        .bs(3px 3px 1rem #666);
+        .df();
+        .fd();
+    }
+    // 标题
+    .dialog-title {
+        height: 3rem;
+        line-height: 3rem;
+        text-indent: 2rem;
+        font-weight: bold;
+        border-top-right-radius: 5px;
+        border-top-left-radius: 5px;
+    }
+    // 内容区域
+    .dialog-content {
+        .dd();
+        height: 1%;
+        padding: 1rem;
+        .os();
+        overflow-wrap: break-word;
+        overflow-y: auto;
+    }
+    // 按钮区域
+    .dialog-buttons {
+        height: 3rem;
+        line-height: 3rem;
+        .df();
+    }
+    // 按钮
+    .dialog-button {
+        .dd();
+        width: 1%;
+        text-align: center;
+        color: #0078D7;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+        &:hover {
+            -webkit-opacity: .7;
+            opacity: .7;
+        }
+    }
+}
+
+.dialog-in {
+    -webkit-animation: dialog-in 500ms forwards;
+    animation: dialog-in 500ms forwards;
+}
+
+.dialog-out {
+    -webkit-animation: dialog-out 500ms;
+    animation: dialog-out 500ms;
+}
+
+@-webkit-keyframes dialog-in {
+    0% {
+        .tr(translate3d(0, 0, 0));
+        opacity: 0;
+    }
+    100% {
+        .tr(translate3d(0, 0, 0));
+        opacity: 1;
+    }
+}
+
+@keyframes dialog-in {
+    0% {
+        .tr(translate3d(0, 0, 0));
+        opacity: 0;
+    }
+    100% {
+        .tr(translate3d(0, 0, 0));
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes dialog-out {
+    0% {
+        .tr(translate3d(0, 0, 0));
+        opacity: 1;
+    }
+    100% {
+        .tr(translate3d(0, 0, 0));
+        opacity: 0;
+    }
+}
+
+@keyframes dialog-out {
+    0% {
+        .tr(translate3d(0, 0, 0));
+        opacity: 1;
+    }
+    100% {
+        .tr(translate3d(0, 0, 0));
+        opacity: 0;
+    }
+}
