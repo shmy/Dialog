@@ -10,6 +10,7 @@
 默认均是模态<br>
 #如何使用?<br>
 引入 Dialog.css和Dialog.js<br>
+方法：Dialog.alert(string||object)<br>
 最简单调用一个 ： Dialog.alert('欢迎！');<br>
 传入一个字符串，显示一个最简单的提示框，当然不支持回调函数，只有一个默认的确定按钮，点击则会关闭对话框！<br>
 或者使用更完整的选项：<br>
@@ -27,3 +28,5 @@ t:定义标题<br>
 c:定义内容信息<br>
 b:一个对象，key为按钮名字，value为回调函数<br>
 m:是否非模态，默认false<br>
+方法：Dialog.toast(string)<br>
+显示一个3秒钟的局部提示框
