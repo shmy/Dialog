@@ -5,7 +5,7 @@
  *  支持回调 ok<br>
  *  支持动画过渡 ok <br>
  *  支持是否模态 ok<br>
- *  目前实现了Alert<br>
+ *  目前实现了Alert、Toast<br>
 
 默认均是模态<br>
 #如何使用?<br>
