@@ -1,3 +1,70 @@
+.dialog-toast {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    max-height: 80%;
+    max-width: 80%;
+    padding: .5rem;
+    background-color: rgba(61, 64, 67, .7);
+    .br(.5rem);
+    .tr(translate3d(0, -100%, 0));
+}
+
+.dialog-toast::after {
+    content: attr(data-content);
+    text-align: center;
+    font-size: 12px;
+    color: #fff;
+}
+
+.toast-in {
+    animation: toast-in 355ms ease-in forwards;
+}
+
+.toast-out {
+    animation: toast-out 355ms ease-out;
+}
+
+@-webkit-keyframes toast-in {
+    from {}
+    to {}
+}
+
+@keyframes toast-in {
+    0% {
+        .tr(translate3d(0, 150px, 0));
+        opacity: 0;
+    }
+    33% {
+        .tr(translate3d(0, 100px, 0));
+        opacity: 1;
+    }
+    66% {
+        .tr(translate3d(0, 125px, 0));
+        opacity: 1;
+    }
+    100% {
+        .tr(translate3d(0, 100px, 0));
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes toast-out {
+    from {}
+    to {}
+}
+
+@keyframes toast-out {
+    from {
+        .tr(translate3d(0, 100px, 0));
+        opacity: 1;
+    }
+    to {
+        .tr(translate3d(0, 100px, 0));
+        opacity: 0;
+    }
+}
+
 @import "base.less";
 // 遮罩
 .dialog-mask {
@@ -71,13 +138,13 @@
 }
 
 .dialog-in {
-    -webkit-animation: dialog-in 500ms forwards;
-    animation: dialog-in 500ms forwards;
+    -webkit-animation: dialog-in 355ms forwards;
+    animation: dialog-in 355ms forwards;
 }
 
 .dialog-out {
-    -webkit-animation: dialog-out 500ms;
-    animation: dialog-out 500ms;
+    -webkit-animation: dialog-out 355ms;
+    animation: dialog-out 355ms;
 }
 
 @-webkit-keyframes dialog-in {

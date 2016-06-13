@@ -42,13 +42,7 @@
                 c: inp.value,
                 b: {
                     '确定': function() {
-                        Dialog.alert('1你点击了确定！');
-                        Dialog.alert('2你点击了确定！');
-                        Dialog.alert('3你点击了确定！');
-                        Dialog.alert('4点击了确定！');
-                        Dialog.alert('5你点击了确定！');
-                        Dialog.alert('6你点击了确定！');
-                        Dialog.alert('7你点击了确定！');
+                        Dialog.alert('你点击了确定！');
                     }
                 }
             });
@@ -68,14 +62,23 @@
                 }
             });
         }, false);
+        document.querySelector('#btn3').addEventListener('click', function() {
+             if (inp.value.trim() === '') {
+                Dialog.toast('不能为空！');
+                inp.focus();
+                return;
+             }
+            Dialog.toast(inp.value);
+        }, false);
     }, false);
     </script>
 </head>
 
 <body>
     <input type="text" id="inp">
-    <button id="btn">提示</button>
-    <button id="btn2">体会</button>
+    <button id="btn">Alert</button>
+    <button id="btn2">Confirm</button>
+    <button id="btn3">Toast</button>
     <p>1</p>
     <p>1</p>
     <p>1</p>

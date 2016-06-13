@@ -8,17 +8,20 @@
 // 'use strict';
 (function(global) {
     function Dialog() {
-        this.dialogMask = this.dialogWrap = this.dialogTitle = this.dialogContent = this.dialogButtons = null;
+        this.dialogMask = this.dialogWrap = this.dialogTitle = this.dialogContent = this.dialogButtons = this.dialogToast = null;
         // touch事件or鼠标事件
         this.type = 'ontouchstart' in window ? 'touchstart' : 'click';
         // 默认模态
         this.isModal = false;
         // 动画类名
         this.animationName = 'dialog-';
-        // 任务链集合
+        // alert任务链集合
         this.tasks = [];
+        // toast任务链集合
+        this.task2 = [];
         // 是否有任务在运行
         this.isRun = false;
+        this.isRun2 = false;
         // 执行初始化
         this.init();
     }
@@ -33,18 +36,29 @@
         this.dialogTitle = document.createElement('div');
         this.dialogContent = document.createElement('div');
         this.dialogButtons = document.createElement('div');
+        this.dialogToast = document.createElement('div');
         // 赋予样式
         this.dialogMask.className = 'dialog-mask';
         this.dialogWrap.className = 'dialog-wrap';
         this.dialogTitle.className = 'dialog-title';
         this.dialogContent.className = 'dialog-content';
         this.dialogButtons.className = 'dialog-buttons';
+        this.dialogToast.className = 'dialog-toast';
         // 分类装载
         this.dialogWrap.appendChild(this.dialogTitle);
         this.dialogWrap.appendChild(this.dialogContent);
         this.dialogWrap.appendChild(this.dialogButtons);
         this.dialogMask.appendChild(this.dialogWrap);
         df.appendChild(this.dialogMask);
+        df.appendChild(this.dialogToast);
+        // 加入DOM
+        document.body.appendChild(df);
+        // 绑定事件
+        this.bind();
+    };
+    // 绑定事件
+    Dialog.prototype.bind = function() {
+        var _this = this;
         // 禁止滑轮事件 防止穿透
         this.dialogMask.addEventListener('mousewheel', penetrate, false);
         // 禁止触摸移动事件 防止穿透
@@ -56,7 +70,7 @@
                 e.preventDefault();
             }
         }
-        // 绑定动画结束事件
+        // dialogMask绑定动画结束事件
         this.dialogMask.addEventListener('webkitAnimationend', animationEnd, false);
         this.dialogMask.addEventListener('animationend', animationEnd, false);
         // 非退出动画不执行
@@ -78,8 +92,26 @@
                 _this.dialogButtons.innerHTML = '';
             }
         }
-        // 加入DOM
-        document.body.appendChild(df);
+        // dialogToast绑定动画结束事件
+        this.dialogToast.addEventListener('webkitAnimationend', animationEnd2, false);
+        this.dialogToast.addEventListener('animationend', animationEnd2, false);
+        // 非退出动画不执行
+        function animationEnd2(e) {
+            if (e.animationName !== 'toast-out') {
+                return;
+            }
+            // 删除第一个任务
+            _this.task2.shift();
+            // 如果任务链中还有任务
+            if (_this.task2.length !== 0) {
+                // 再次执行渲染
+                _this.render2();
+            } else {
+                _this.isRun2 = false;
+                // 清空提示内容
+                _this.dialogToast.dataset.content = '';
+            }
+        }
     };
     // Alert
     Dialog.prototype.alert = function(arg) {
@@ -113,15 +145,13 @@
             'm': m,
             'b': b
         });
-        this.do();
-    };
-    Dialog.prototype.do = function() {
         if (this.isRun) {
             return;
         }
         this.isRun = true;
         this.render();
     };
+
     // 渲染
     Dialog.prototype.render = function() {
         var _this = this;
@@ -178,6 +208,33 @@
                 this.removeEventListener(_this.type, modal, false);
             }
         }
+    };
+    // Tosat
+    Dialog.prototype.toast = function(content, timeout) {
+        var _this = this;
+        this.task2.push({
+            'c': content,
+            't': timeout || 3 * 1000
+        });
+
+        if (this.isRun2) {
+            return;
+        }
+        this.isRun2 = true;
+        this.render2();
+    };
+    Dialog.prototype.render2 = function() {
+        var _this = this;
+        var opt = _this.task2[0];
+        _this.dialogToast.dataset.content = opt.c;
+        _this.dialogToast.style.marginLeft = -_this.dialogToast.offsetWidth / 2 + 'px';
+        _this.dialogToast.classList.remove('toast-out');
+        _this.dialogToast.classList.add('toast-in');
+        var timeout = setTimeout(function() {
+            _this.dialogToast.classList.remove('toast-in');
+            _this.dialogToast.classList.add('toast-out');
+            clearTimeout(timeout);
+        }, opt.t);
     };
     // 主动注册对象
     global.addEventListener('DOMContentLoaded', function() {

@@ -1,3 +1,68 @@
+.dialog-toast {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  max-height: 80%;
+  max-width: 80%;
+  padding: .5rem;
+  background-color: rgba(61, 64, 67, 0.7);
+  -webkit-border-radius: 0.5rem;
+  border-radius: 0.5rem;
+  -webkit-transform: translate3d(0, -100%, 0);
+  transform: translate3d(0, -100%, 0);
+}
+.dialog-toast::after {
+  content: attr(data-content);
+  text-align: center;
+  font-size: 12px;
+  color: #fff;
+}
+.toast-in {
+  animation: toast-in 355ms ease-in forwards;
+}
+.toast-out {
+  animation: toast-out 355ms ease-out;
+}
+@-webkit-keyframes toast-in {
+  
+}
+@keyframes toast-in {
+  0% {
+    -webkit-transform: translate3d(0, 150px, 0);
+    transform: translate3d(0, 150px, 0);
+    opacity: 0;
+  }
+  33% {
+    -webkit-transform: translate3d(0, 100px, 0);
+    transform: translate3d(0, 100px, 0);
+    opacity: 1;
+  }
+  66% {
+    -webkit-transform: translate3d(0, 125px, 0);
+    transform: translate3d(0, 125px, 0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translate3d(0, 100px, 0);
+    transform: translate3d(0, 100px, 0);
+    opacity: 1;
+  }
+}
+@-webkit-keyframes toast-out {
+  
+}
+@keyframes toast-out {
+  from {
+    -webkit-transform: translate3d(0, 100px, 0);
+    transform: translate3d(0, 100px, 0);
+    opacity: 1;
+  }
+  to {
+    -webkit-transform: translate3d(0, 100px, 0);
+    transform: translate3d(0, 100px, 0);
+    opacity: 0;
+  }
+}
 .dialog-mask {
   margin: 0;
   padding: 0;
@@ -84,12 +149,12 @@
   opacity: .7;
 }
 .dialog-in {
-  -webkit-animation: dialog-in 500ms forwards;
-  animation: dialog-in 500ms forwards;
+  -webkit-animation: dialog-in 355ms forwards;
+  animation: dialog-in 355ms forwards;
 }
 .dialog-out {
-  -webkit-animation: dialog-out 500ms;
-  animation: dialog-out 500ms;
+  -webkit-animation: dialog-out 355ms;
+  animation: dialog-out 355ms;
 }
 @-webkit-keyframes dialog-in {
   0% {
